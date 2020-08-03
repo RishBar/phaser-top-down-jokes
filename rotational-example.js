@@ -32,13 +32,20 @@ var velocityFromRotation = Phaser.Physics.Arcade.ArcadePhysics.prototype.velocit
 var ship;
 
 function preload() {
-  this.load.image('ship', './assets/gunguyup.png')
+  this.load.image('ship', 'assets/enemy3idle1.png')
+  this.load.image('bullet', 'assets/bullet.png')
 };
 
 function create() {
   
   ship = this.physics.add.image(200, 150, 'ship')
     .setVelocity(SPEED, 0);
+
+  this.input.on('pointerdown', this.addBullet, this)
+}
+
+function addBullet(pointer) {
+  const bullet = this.physics.add.sprite(pointer.x, game.config.height*.9, "bullet");
 }
 
 function update() {
